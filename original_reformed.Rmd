@@ -13,7 +13,15 @@ knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 library(readxl)
 library(here)
+library(tmcn)
+#library(reticulate)
 ```
+
+```{r pythonreticulate}
+# use_python("/usr/local/bin/python3", required = T)
+# reticulate::py_config()
+```
+
 
 ```{r}
 df <- read_excel(here("originaldata",
@@ -21,4 +29,70 @@ df <- read_excel(here("originaldata",
 df
 ```
 
-# 
+# Add simplified as well
+
+```{r}
+df %>%
+  rename(traditional = zi) %>%
+  mutate(simplified = toTrad(traditional, rev = TRUE)) %>%
+  select(traditional, simplified, everything()) -> df.simplified
+```
+
+# Add different pinyin options
+
+write my own function?
+Because they already provided 
+
+unnest tokens!
+invetory
+
+```{r}
+df.simplified %>%
+  select(py) %>%
+  distinct() -> pinyincol
+
+pinyincol %>%
+  tidytext::unnest_tokens(letter, py, token = "characters")%>%
+  distinct() %>%
+  arrange(letter)
+```
+
+ʼ
+```{r}
+pinyincol %>%
+  mutate(pinyinnum = case_when(
+    #a
+    str_detect(py, "ā") ~ str_replace(py, "ā", "a1"),
+    str_detect(py, "á") ~ str_replace(py, "á", "a2"),
+    str_detect(py, "ǎ") ~ str_replace(py, "ǎ", "a3"),
+    str_detect(py, "à") ~ str_replace(py, "à", "a4"),
+    # e
+    str_detect(py, "ē") ~ str_replace(py, "ē", "e1"),
+    str_detect(py, "é") ~ str_replace(py, "é", "e2"),
+    str_detect(py, "ě") ~ str_replace(py, "ě", "e3"),
+    str_detect(py, "è") ~ str_replace(py, "è", "e4"),
+    # i
+    str_detect(py, "ī") ~ str_replace(py, "ī", "i1"),
+    str_detect(py, "í") ~ str_replace(py, "í", "i2"),
+    str_detect(py, "ǐ") ~ str_replace(py, "ǐ", "i3"),
+    str_detect(py, "ì") ~ str_replace(py, "ì", "i4"),
+    # o
+    str_detect(py, "ō") ~ str_replace(py, "ō", "o1"),
+    str_detect(py, "ó") ~ str_replace(py, "ó", "o2"),
+    str_detect(py, "ǒ") ~ str_replace(py, "ǒ", "o3"),
+    str_detect(py, "ò") ~ str_replace(py, "ò", "o4"),
+    # u
+    str_detect(py, "ū") ~ str_replace(py, "ū", "u1"),
+    str_detect(py, "ú") ~ str_replace(py, "ú", "u2"),
+    str_detect(py, "ǔ") ~ str_replace(py, "ǔ", "u3"),
+    str_detect(py, "ù") ~ str_replace(py, "ù", "u1"),
+    # ü
+    #str_detect(py, "ī") ~ str_replace(py, "ī", "ü1"), #notpresent
+    str_detect(py, "ǘ") ~ str_replace(py, "ǘ", "ü2"),
+    str_detect(py, "ǚ") ~ str_replace(py, "ǚ", "ü3"),
+    str_detect(py, "ǜ") ~ str_replace(py, "ǜ", "ü4"),
+    TRUE ~ py
+    ))
+```
+
+
