@@ -1,0 +1,24 @@
+---
+title: "reform original data"
+author: "Thomas Van Hoey"
+date: "10-10-2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(tidyverse)
+library(readxl)
+library(here)
+```
+
+```{r}
+df <- read_excel(here("originaldata",
+                      "BaxterSagartOC2015-10-13.xlsx"))
+df
+```
+
+# 
