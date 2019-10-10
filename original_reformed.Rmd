@@ -40,24 +40,6 @@ df %>%
 
 # Add different pinyin options
 
-write my own function?
-Because they already provided 
-
-unnest tokens!
-invetory
-
-```{r}
-df.simplified %>%
-  select(py) %>%
-  distinct() -> pinyincol
-
-pinyincol %>%
-  tidytext::unnest_tokens(letter, py, token = "characters")%>%
-  distinct() %>%
-  arrange(letter)
-```
-
-ʼ
 ```{r}
 pinyincol %>%
   mutate(pinyinnum = case_when(
@@ -92,7 +74,77 @@ pinyincol %>%
     str_detect(py, "ǚ") ~ str_replace(py, "ǚ", "ü3"),
     str_detect(py, "ǜ") ~ str_replace(py, "ǜ", "ü4"),
     TRUE ~ py
-    ))
+    )) %>%
+  mutate(tonenumber = str_extract(pinyinnum, "\\d"),
+         pinyinnone = str_remove(pinyinnum, "\\d")) %>%
+  unite("pinyinnum", 
+        pinyinnone:tonenumber,
+        remove = FALSE,
+        sep = "") %>%
+  select(pinyintone = py,
+         pinyinnum,
+         pinyinnone,
+         tonenumber) -> pinyinset
 ```
 
+```{r}
+pinyinset %>%
+  left_join(df.simplified, 
+            by = c("pinyintone" = "py")) -> pinyinexpanded
+pinyinexpanded
+```
+
+
+# Middle Chinese
+
+> ASCII-friendly Middle Chinese (MC) transcription. This is a minor modification of the notation used in Baxter (1992); for details see Baxter & Sagart (2014:9–20). For clarity, after each transcribed syllable we give the MC initial, final, and tone separately (with A, B, C, D for the traditional categories 平 píng, 上 shǎng, 去 qù, and 入 rù respectively): e.g. 處 chǔ, MC tsyhoX (tsyh- + -jo + B) ‘place’. Note that this notation is not intended as a reconstruction; rather it is intended as a convenient representation of the information on pronunciation given in Middle Chinese sources such as the Guǎngyùn 《廣韻》 and the Jīngdiǎn shìwén 《經典釋⽂文》.
+
+So:
+* MC
+* initial, final, tone
+  * tone = A,B,C,D = ping, shang, qu, ru
+  
+```{r}
+# they one error here
+pinyinexpanded[2013,]$...4 <- "(l- + -ok D)"
+```
+  
+
+```{r}
+pinyinexpanded %>%
+  rename(MCparts =`...4`) %>%
+  mutate(MCparts = str_replace_all(MCparts, "[()]", "")) %>%
+  separate(MCparts, 
+           into = c("MCinitial", "MCfinaltone"),
+           sep = " \\+ ") %>%
+  mutate(MCfinaltone = str_trim(MCfinaltone)) %>%
+  separate(MCfinaltone,
+           into = c("MCfinal", "MCtone"),
+           sep = " ") %>%
+  mutate(MCtone = case_when(
+    MCtone == "A" ~ "ping",
+    MCtone == "B" ~ "shang",
+    MCtone == "C" ~ "qu",
+    MCtone == "D" ~ "ru")) %>%
+  select(traditional, 
+         simplified, 
+         everything())-> BaxterSagartExpanded
+```
+
+Middle Chinese to IPA with sinopy
+
+
+
+
+
+
+
+```{r}
+
+```
+
+
+```{r}
+BaxterSagartExpanded
+```
 
