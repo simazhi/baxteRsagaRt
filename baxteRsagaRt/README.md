@@ -1,0 +1,64 @@
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+# baxteRsagaRt
+
+<!-- badges: start -->
+
+<!-- badges: end -->
+
+The goal of baxteRsagaRt is to provide a slighlty more accessible
+version of the excel file provided by Baxter & Sagart [on this
+website](http://ocbaxtersagart.lsait.lsa.umich.edu). That file contains
+version 1.1 of their data on which they based their book *Old Chinese: A
+new reconstruction* (2014).
+
+Originally the source dataset was an .xslx file. I have followed a
+similar structure, but made a few upgrades (at least for my own work):
+
+For orthography, I have included a simplified version next to the
+original traditional:
+
+  - Traditional `traditional`
+  - Simplified `simplified`
+
+For Mandarin pronuciation, I now provide the following versions
+
+  - pinyin with tones `pinyintone`
+  - pinyin with numbers `pinyinnum`
+  - pinyin without tones or numbers `pinyinnone`
+  - the tone number `tonenumber`
+
+For Middle Chinese, I have provided an IPA version generated with the
+[sinopy library](https://pypi.org/project/sinopy/):
+
+  - Middle Chinese (Baxter & Sagart): `MCbaxter`
+  - Middle Chinese initial (Baxter & Sagart): `MCinitial`
+  - Middle Chinese final (Baxter & Sagart): `MCfinal`
+  - Middle Chinese tone (Baxter & Sagart): `MCtone`
+  - Middle Chinese ipa : `MCipa`
+
+Old Chinese follows Baxter & Sagert (2014):
+
+  - Old Chinese: `OC`
+
+The following variables are straight from their dataset:
+
+  - a cursory gloss `gloss`
+  - the reference to Karlgren’s *Grammata Serica Recensa* `GSR`
+  - position in the *Hanyu Da Zidian* 漢語大字典 `HYDZD`
+  - traditional *Kangxi dictionary * 康熙字典 radical `rad`
+  - additional strokes `str`
+  - unicode UTF-16 generated through the unihan database: `Unicode`
+
+## Installation
+
+You can install baxteRsagaRt from [GitHub](https://github.com/) with:
+
+``` r
+# install.packages("devtools")
+devtools::install_github("simazhi/baxteRsagaRt/baxteRsagaRt",
+                         auth_token = AUTH_TOKEN)
+```
+
+**Please contact me for the AUTH\_TOKEN**
