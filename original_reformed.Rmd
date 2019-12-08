@@ -150,12 +150,10 @@ use_python("/usr/local/bin/python3", required = T)
 reticulate::py_config()
 ```
 
+With sinopy: first make an empty list, and then for-loop over every element to turn it into a ipa.
+
 ```{python}
 from sinopy import baxter2ipa
-
-#baxteripa = baxter2ipa(r.MCbaxter)
-
-#print(baxteripa)
 
 baxteripa = []
 for baxter in r.MCbaxter:
@@ -167,6 +165,37 @@ print(baxteripa)
 ```
 
 ```{r}
-py$baxteripa
+py$baxteripa 
+```
+
+Now turn MC_baxter and MC_ipa into dataframe
+
+```{r}
+tibble(MCbaxter = MCbaxter,
+       MCipa = py$baxteripa) -> MCs
+```
+
+Add back into main table
+
+```{r}
+BaxterSagartExpanded %>%
+  left_join(MCs, by = c("MC" = "MCbaxter")) %>%
+  distinct() %>%
+  rename(MCbaxter = MC) %>%
+  select(traditional, simplified, 
+         pinyintone, pinyinnum, pinyinnone, tonenumber,
+         MCbaxter, MCinitial, MCfinal, MCtone,
+         MCipa,
+         everything()
+         ) -> BaxterSagartFinished
+```
+
+# The finished product
+
+I need to check the final table, but this should be it
+```{r}
+write_csv(BaxterSagartFinished,
+          "BaxterSagartreformed.csv",
+          col_names = TRUE)
 ```
 

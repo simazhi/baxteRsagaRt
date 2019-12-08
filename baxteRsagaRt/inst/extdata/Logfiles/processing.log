@@ -1,0 +1,33 @@
+TRACE [2019-12-08 16:34:27] Logging to /Users/Thomas/googledrive/baxteRsagart/baxteRsagaRt/inst/extdata/Logfiles/processing.log
+TRACE [2019-12-08 16:34:27] Processing data
+TRACE [2019-12-08 16:34:27] Reading yaml configuration
+TRACE [2019-12-08 16:34:27] Found /Users/Thomas/googledrive/baxteRsagart/baxteRsagaRt/data-raw/baxter_sagart.Rmd
+TRACE [2019-12-08 16:34:27] Processing 1 of 1: /Users/Thomas/googledrive/baxteRsagart/baxteRsagaRt/data-raw/baxter_sagart.Rmd
+
+TRACE [2019-12-08 16:34:28] 1 data set(s) created by baxter_sagart.Rmd
+TRACE [2019-12-08 16:34:28] NEWS.md file not found, creating!
+TRACE [2019-12-08 16:34:28] NEWS.md file found, updating!
+TRACE [2019-12-08 16:34:28] Saving to data
+TRACE [2019-12-08 16:34:28] Copied documentation to /Users/Thomas/googledrive/baxteRsagart/baxteRsagaRt/R/baxteRsagaRt.R
+TRACE [2019-12-08 16:34:29] Done
+TRACE [2019-12-08 16:34:29] DataPackageR succeeded
+TRACE [2019-12-08 16:34:29] Building documentation
+TRACE [2019-12-08 16:34:32] Building package
+TRACE [2019-12-08 16:43:19] Rebuilding data package documentation.
+TRACE [2019-12-08 16:49:11] Rebuilding data package documentation.
+TRACE [2019-12-08 16:50:38] Rebuilding data package documentation.
+TRACE [2019-12-08 16:50:50] Logging to /Users/Thomas/googledrive/baxteRsagart/baxteRsagaRt/inst/extdata/Logfiles/processing.log
+TRACE [2019-12-08 16:50:50] Processing data
+TRACE [2019-12-08 16:50:50] Reading yaml configuration
+TRACE [2019-12-08 16:50:50] Found /Users/Thomas/googledrive/baxteRsagart/baxteRsagaRt/data-raw/baxter_sagart.Rmd
+TRACE [2019-12-08 16:50:50] Processing 1 of 1: /Users/Thomas/googledrive/baxteRsagart/baxteRsagaRt/data-raw/baxter_sagart.Rmd
+
+TRACE [2019-12-08 16:50:51] 1 data set(s) created by baxter_sagart.Rmd
+TRACE [2019-12-08 16:50:51] NEWS.md file found, updating!
+TRACE [2019-12-08 16:50:51] Data hasn't changed but the DataVersion has been bumped.
+TRACE [2019-12-08 16:50:51] Saving to data
+TRACE [2019-12-08 16:50:51] Copied documentation to /Users/Thomas/googledrive/baxteRsagart/baxteRsagaRt/R/baxteRsagaRt.R
+TRACE [2019-12-08 16:50:51] Done
+TRACE [2019-12-08 16:50:51] DataPackageR succeeded
+TRACE [2019-12-08 16:50:51] Building documentation
+TRACE [2019-12-08 16:50:54] Building package

@@ -1,0 +1,8 @@
+configuration:
+  files:
+    baxter_sagart.Rmd:
+      enabled: yes
+  objects:
+  - baxtersagart
+  render_root:
+    tmp: '221906'

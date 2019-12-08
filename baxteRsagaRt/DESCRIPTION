@@ -1,0 +1,22 @@
+Package: baxteRsagaRt
+Title: Data package containing the Baxter and Sagart reconstructions for Middle and Old Chinese
+Version: 0.1
+Authors@R: c(
+    person(given = "Thomas",
+           family = "Van Hoey",
+           role = c("cre"),
+           email = "thomas_van_hoey@hotmail.com"),
+    person("William H.", "Baxter", email = " wbaxter@umich.edu", role = c("aut")),
+    person("Laurent", "Sagart", email = "laurent.sagart@gmail.com", role = c("aut")))
+Description: This package contains the contents of the database by Baxter & Sagart
+License: GNU General Public License
+Encoding: UTF-8
+LazyData: true
+DataVersion: 1.1
+Roxygen: list(markdown = TRUE)
+Date: 2019-12-08
+Suggests: 
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
+RoxygenNote: 7.0.0

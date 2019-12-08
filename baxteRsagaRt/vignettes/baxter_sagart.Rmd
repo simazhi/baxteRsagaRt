@@ -1,0 +1,14 @@
+---
+title: Process Baxter Sagart reformed file into datapackage
+author: Thomas Van Hoey
+date: 8 December, 2019
+output_format: html_document
+vignette: >
+  %\VignetteIndexEntry{Process Baxter Sagart reformed file into datapackage}
+  %\VignetteEngine{knitr::rmarkdown}
+  \usepackage[utf8]{inputenc}
+---
+
+```{r}
+baxtersagart <- df
+```

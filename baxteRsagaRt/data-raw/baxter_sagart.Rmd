@@ -1,0 +1,10 @@
+---
+title: Process Baxter Sagart reformed file into datapackage
+author: Thomas Van Hoey
+date:  8 December, 2019
+output_format: html_document
+---
+
+```{r}
+baxtersagart <- df
+```
