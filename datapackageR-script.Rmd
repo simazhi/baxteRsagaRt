@@ -28,25 +28,32 @@ Other methods:
 library(DataPackageR)
 library(here)
 library(tidyverse)
+library(readxl)
 ```
 
 # Variables
 
 ```{r}
 PATH <- here()
-PACKAGENAME <- "CLD" #Chinese Lexical Database R
+PACKAGENAME <- "baxteRsagaRt" #Chinese Lexical Database R
 ```
 
 
 # Reading in the data
 
+**SO THIS WILL BECOME THE NEW FILE REFORMED THAT I NEED TO READ IN** 
+
 ```{r}
-# load("chineselexicaldatabase2.1.rda")
-load("cld_extended.rda")
-df <- cld_extended
+df <- read_excel(here("originaldata",
+                      "BaxterSagartOC2015-10-13.xlsx"))
+df
 ```
 
+# Manipulations
 
+```{r}
+
+```
 
 
 # Create a data package directory structure.

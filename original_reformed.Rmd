@@ -17,11 +17,6 @@ library(tmcn)
 #library(reticulate)
 ```
 
-```{r pythonreticulate}
-# use_python("/usr/local/bin/python3", required = T)
-# reticulate::py_config()
-```
-
 
 ```{r}
 df <- read_excel(here("originaldata",
@@ -36,11 +31,17 @@ df %>%
   rename(traditional = zi) %>%
   mutate(simplified = toTrad(traditional, rev = TRUE)) %>%
   select(traditional, simplified, everything()) -> df.simplified
+
+df.simplified
 ```
 
 # Add different pinyin options
 
 ```{r}
+df.simplified %>%
+  select(py) %>%
+  distinct() -> pinyincol
+
 pinyincol %>%
   mutate(pinyinnum = case_when(
     #a
@@ -131,20 +132,41 @@ pinyinexpanded %>%
          everything())-> BaxterSagartExpanded
 ```
 
-Middle Chinese to IPA with sinopy
-
-
-
-
-
-
-
-```{r}
-
-```
-
 
 ```{r}
 BaxterSagartExpanded
+```
+
+
+Middle Chinese to IPA with sinopy
+
+```{r}
+BaxterSagartExpanded %>% select(MC) %>% pull() -> MCbaxter
+```
+
+```{r pythonreticulate}
+library(reticulate)
+use_python("/usr/local/bin/python3", required = T)
+reticulate::py_config()
+```
+
+```{python}
+from sinopy import baxter2ipa
+
+#baxteripa = baxter2ipa(r.MCbaxter)
+
+#print(baxteripa)
+
+baxteripa = []
+for baxter in r.MCbaxter:
+  ipa = baxter2ipa(baxter)
+  baxteripa.append(ipa)
+
+print(baxteripa)
+
+```
+
+```{r}
+py$baxteripa
 ```
 
