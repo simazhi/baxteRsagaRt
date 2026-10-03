@@ -57,8 +57,7 @@ You can install baxteRsagaRt from [GitHub](https://github.com/) with:
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("simazhi/baxteRsagaRt/baxteRsagaRt",
-                         auth_token = AUTH_TOKEN)
+devtools::install_github("simazhi/baxteRsagaRt/baxteRsagaRt")
 ```
 
 **Please contact me for the AUTH\_TOKEN**
